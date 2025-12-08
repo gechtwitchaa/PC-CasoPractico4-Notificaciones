@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Notificaciones - <span th:text="${usuario}">usuario</span></title>
+    <script src="/js/notificaciones.js"></script>
+    <style>
+        .no-leido { font-weight: bold; background: #fff8e1; }
+        .urgente { color: darkred; }
+        table { width: 100%; border-collapse: collapse; }
+        td, th { border: 1px solid #ddd; padding: 8px; }
+    </style>
+</head>
+<body>
+<h1>Notificaciones de <span th:text="${usuario}">usuario</span></h1>
+
+<div>
+    Filtrar por tipo:
+    <select id="filtroTipo">
+        <option value="">TODAS</option>
+        <option value="INFO">INFO</option>
+        <option value="ALERTA">ALERTA</option>
+        <option value="URGENTE">URGENTE</option>
+    </select>
+    <button onclick="aplicarFiltro()">Aplicar</button>
+</div>
+
+<table id="tabla">
+    <thead>
+    <tr><th>Mensaje</th><th>Tipo</th><th>Fecha</th><th>Leído</th><th>Acción</th></tr>
+    </thead>
+    <tbody id="cuerpo">
+    <!-- se van a insertar filas por JS -->
+    </tbody>
+</table>
+
+<script>
+    // user obtenido de variable Thymeleaf
+    const usuario = /*[[${usuario}]]*/ 'usuario1'; // Thymeleaf sustituirá en el servidor
+    window.onload = () => init(usuario);
+</script>
+</body>
+</html>
